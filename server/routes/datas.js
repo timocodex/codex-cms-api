@@ -4,6 +4,8 @@ var Data = require('../controllers/datas.controller.js')
 /* GET users listing. */
 router.get('/',Data.show);
 router.post('/',Data.create);
-
+router.delete('/:id',Data.delete)
+router.put('/:id',Data.update)
+router.get('/search',Data.search)
 
 module.exports = router;

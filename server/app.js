@@ -9,8 +9,8 @@ mongoose.connect('mongodb://localhost/cms')
 mongoose.Promise = global.Promise
 var index = require('./routes/index');
 var users = require('./routes/users');
-// var datas = require('./routes/datas');
-// var dataDates = require('./routes/dataDates');
+var datas = require('./routes/datas');
+var dataDates = require('./routes/dataDates');
 var cors = require('cors')
 var app = express();
 
@@ -61,8 +61,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-// app.use('/api/data', datas);
-// app.use('/api/dataDate', dataDates);
+app.use('/api/data', datas);
+app.use('/api/dataDate', dataDates);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

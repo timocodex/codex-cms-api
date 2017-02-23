@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var dataDateSchema = new Schema({
-  date: { type: String,required: true },
+  datadate: { type: String,required: true },
   frequency: { type: String, required: true }
 });
 
