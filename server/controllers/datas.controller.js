@@ -26,6 +26,16 @@ module.exports = {
       }
     })
   },
+  showOne: function(req,res){
+    Data.findOne({_id:req.params.id},function(err,result){
+      if(err){
+        res.send(err)
+      }
+      else{
+        res.json(result)
+      }
+    })
+  },
   delete: function(req,res){
     Data.findOneAndRemove({_id:req.params.id},function(err){
       if(err){
