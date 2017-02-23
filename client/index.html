@@ -10,7 +10,125 @@
 <body>
   <div class="container">
   <div id="datas">
-  <div class="row">
+    <div class="row" v-if="pages==='dataDate'">
+      <div class="row">
+        <nav class="light-blue lighten-1" role="navigation">
+          <div class="nav-wrapper container"><a id="welcome" href="#" class="brand-logo"></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a @click="dataPage">data</a></li>
+              <li><a @click="dataDatePage">data Date</a></li>
+              <li><a @click="logout">logout</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+          </div>
+        </nav>
+      </div>
+      <br>
+      <div id="modalmodalan" class="modal">
+      <div class="modal-content">
+        <h3>Update</h3>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+            <div class="input-field col s12 m12">
+              <input v-model="updatedDatas.letter" name="letter" type="text" class="validate">
+              <label class="active" for="letter">add a letter</label>
+            </div>
+            <div class="input-field col s12 m12">
+              <input v-model="updatedDatas.frequency" name="frequency" type="number" class="validate">
+              <label class="active" for="frequency">add a frequency</label>
+            </div>
+          </form>
+          <a href="#!" id="updateData" class="waves-effect waves-light btn modal-close" @click="updateData(updatedDatas._id)">submit</a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+      </div>
+    </div>
+  </div>
+  <div id="modalmodalan2" class="modal">
+  <div class="modal-content">
+    <h3>New Data</h3>
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+        <div class="input-field col s12 m12">
+          <input v-model="datadate.datadate" name="letter" type="text" class="validate">
+          <label class="active" for="letter">add a letter</label>
+        </div>
+        <div class="input-field col s12 m12">
+          <input v-model="datadate.frequency" name="frequency" type="number" class="validate">
+          <label class="active" for="frequency">add a frequency</label>
+        </div>
+      </form>
+      <a href="#!" id="updateData" class="waves-effect waves-light btn modal-close" @click="addDataDate">submit</a>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+  </div>
+  </div>
+  </div>
+    <div class="row">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+          <div class="input-field col s4 m4">
+            <input v-model="datas.sLetter" name="letter" type="text" class="validate">
+            <label class="active" for="letter">add a letter</label>
+          </div>
+          <div class="input-field col s4 m4">
+            <input v-model="datas.sFreq" name="frequency" type="Number" class="validate">
+            <label class="active" for="frequency">add a frequency</label>
+          </div>
+        </form>
+        <a class="waves-effect waves-light blue btn" name="newtod" @click="searchData">search</a>
+      </div>
+
+      <a class="waves-effect waves-light blue btn" name="newtod" href="#modalmodalan2">add new</a>
+    </div>
+
+
+
+      <div class="row">
+        <h3>data: </h3>
+
+          <table>
+            <thead>
+              <tr>
+                  <th data-field="id">Letter</th>
+                  <th data-field="name">Frequency</th>
+                  <th data-field="price">Actions</th>
+              </tr>
+            </thead>
+
+            <tbody id="tabelEvent" v-for="dataz in datases">
+              <tr>
+                <td>{{dataz.letter}}</td>
+                <td>{{dataz.frequency}}</td>
+                <td><a class="waves-effect waves-light btn" name="update" href="#modalmodalan" @click="open(dataz._id)" >update</a> <a class="waves-effect waves-light btn" name="delete" @click="deleteData(dataz._id)">delete</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+  </div>
+  <div class="row" v-if="pages==='data'">
+    <div class="row">
+      <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="welcome" href="#" class="brand-logo"></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a @click="dataPage">data</a></li>
+            <li><a @click="dataDatePage">data Date</a></li>
+            <li><a @click="logout">logout</a></li>
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+      </nav>
+    </div>
+    <br>
     <div id="modalmodalan" class="modal">
     <div class="modal-content">
       <h3>Update</h3>
@@ -66,7 +184,7 @@
           <label class="active" for="letter">add a letter</label>
         </div>
         <div class="input-field col s4 m4">
-          <input v-model="datas.sFreq" name="frequency" type="number" class="validate">
+          <input v-model="datas.sFreq" name="frequency" type="Number" class="validate">
           <label class="active" for="frequency">add a frequency</label>
         </div>
       </form>
@@ -80,7 +198,7 @@
 
     <div class="row">
       <h3>data: </h3>
-      <div class="col s12 m12" v-for="dataz in datases">
+
         <table>
           <thead>
             <tr>
@@ -90,7 +208,7 @@
             </tr>
           </thead>
 
-          <tbody id="tabelEvent">
+          <tbody id="tabelEvent" v-for="dataz in datases">
             <tr>
               <td>{{dataz.letter}}</td>
               <td>{{dataz.frequency}}</td>
@@ -98,7 +216,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
       </div>
 
   </div>
@@ -112,7 +229,15 @@
 <script src="public/js/gmaps.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.modal').modal();
+    var t= localStorage.getItem('token')
+    if(t){
+      var c= localStorage.getItem('user')
+      $('#welcome').html(`welcome ${c}`);
+      $('.modal').modal();
+    }
+    else{
+      window.location.href='http://127.0.0.1:8080/welcome.html'
+    }
   })
 </script>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
