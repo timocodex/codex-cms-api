@@ -176,12 +176,12 @@ addDataDate: function() {
   $.ajax({
     type: 'POST',
     url: 'http://localhost:3000/api/dataDate',
-    data:{letter:app.datas.letter,
-          frequency:app.datas.frequency},
+    data:{datadate:app.datadate.datadate,
+          frequency:app.datadate.frequency},
     success: function(data) {
-      app.fetchData()
-      app.datas = {
-        letter:'',
+      app.fetchDatadate()
+      app.datadate = {
+        datadate:'',
         frequency:''
       };
     },
@@ -189,6 +189,63 @@ addDataDate: function() {
       console.log(error);
     }
   });
-}
+},
+deleteDataDate:function(id){
+  $.ajax({
+    type: 'DELETE',
+    url: `http://localhost:3000/api/dataDate/${id}`,
+    success: function(data) {
+      app.fetchDatadate()
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+},
+open2: function(id){
+  $.ajax({
+    type: 'GET',
+    url: `http://localhost:3000/api/dataDate/${id}`,
+    success: function(data) {
+      app.updatedDatadate ={
+        _id:data._id,
+        datadate:data.datadate,
+        frequency:data.frequency
+      }
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+},
+updateDatadate: function(id) {
+  $.ajax({
+    type: 'PUT',
+    url: `http://localhost:3000/api/dataDate/${id}`,
+    data:{
+      datadate:app.updatedDatadate.letter,
+      frequency:app.updatedDatadate.frequency
+        },
+    success: function(data) {
+      app.fetchDatadate()
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+},
+searchDataDate: function(){
+  $.ajax({
+    type: 'GET',
+    url: `http://localhost:3000/api/dataDate/search?l=${app.datadate.sLetter}&f=${app.datadate.sFreq}`,
+    success: function(data) {
+      console.log(data);
+      app.datases = data
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+},
   }
 });

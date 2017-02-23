@@ -31,15 +31,15 @@
           <form class="col s12">
             <div class="row">
             <div class="input-field col s12 m12">
-              <input v-model="updatedDatas.letter" name="letter" type="text" class="validate">
-              <label class="active" for="letter">add a letter</label>
+              <input v-model="updatedDatadate.datadate" name="date" type="text" class="validate">
+
             </div>
             <div class="input-field col s12 m12">
-              <input v-model="updatedDatas.frequency" name="frequency" type="number" class="validate">
+              <input v-model="updatedDatadate.frequency" name="frequency" type="number" class="validate">
               <label class="active" for="frequency">add a frequency</label>
             </div>
           </form>
-          <a href="#!" id="updateData" class="waves-effect waves-light btn modal-close" @click="updateData(updatedDatas._id)">submit</a>
+          <a href="#!" id="updateData" class="waves-effect waves-light btn modal-close" @click="updateDatadate(updatedDatadate._id)">submit</a>
         </div>
       </div>
       <div class="modal-footer">
@@ -54,8 +54,7 @@
       <form class="col s12">
         <div class="row">
         <div class="input-field col s12 m12">
-          <input v-model="datadate.datadate" name="letter" type="text" class="validate">
-          <label class="active" for="letter">add a letter</label>
+          <input v-model="datadate.datadate" name="letter" type="date" class="validate">
         </div>
         <div class="input-field col s12 m12">
           <input v-model="datadate.frequency" name="frequency" type="number" class="validate">
@@ -75,15 +74,15 @@
         <form class="col s12">
           <div class="row">
           <div class="input-field col s4 m4">
-            <input v-model="datas.sLetter" name="letter" type="text" class="validate">
+            <input v-model="datadate.sLetter" name="letter" type="date" class="validate">
             <label class="active" for="letter">add a letter</label>
           </div>
           <div class="input-field col s4 m4">
-            <input v-model="datas.sFreq" name="frequency" type="Number" class="validate">
+            <input v-model="datadate.sFreq" name="frequency" type="Number" class="validate">
             <label class="active" for="frequency">add a frequency</label>
           </div>
         </form>
-        <a class="waves-effect waves-light blue btn" name="newtod" @click="searchData">search</a>
+        <a class="waves-effect waves-light blue btn" name="newtod" @click="searchDataDate">search</a>
       </div>
 
       <a class="waves-effect waves-light blue btn" name="newtod" href="#modalmodalan2">add new</a>
@@ -105,9 +104,9 @@
 
             <tbody id="tabelEvent" v-for="dataz in datases">
               <tr>
-                <td>{{dataz.letter}}</td>
+                <td>{{dataz.datadate}}</td>
                 <td>{{dataz.frequency}}</td>
-                <td><a class="waves-effect waves-light btn" name="update" href="#modalmodalan" @click="open(dataz._id)" >update</a> <a class="waves-effect waves-light btn" name="delete" @click="deleteData(dataz._id)">delete</a></td>
+                <td><a class="waves-effect waves-light btn" name="update" href="#modalmodalan" @click="open2(dataz._id)" >update</a> <a class="waves-effect waves-light btn" name="delete" @click="deleteDataDate(dataz._id)">delete</a></td>
               </tr>
             </tbody>
           </table>
